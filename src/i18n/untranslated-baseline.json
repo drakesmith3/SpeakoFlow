@@ -43,6 +43,7 @@
       "settings.assistant.webSearch.providers.brave",
       "settings.assistant.webSearch.providers.serpapi",
       "settings.dictation.cloud.endpoint.azurePlaceholder",
+      "settings.dictation.cloud.logfare.disclosure",
       "settings.dictation.flow.phrasePlaceholder",
       "settings.history.filters.flow",
       "settings.history.flowLabel",
@@ -113,6 +114,7 @@
       "settings.assistant.webSearch.providers.brave",
       "settings.assistant.webSearch.providers.serpapi",
       "settings.dictation.cloud.endpoint.azurePlaceholder",
+      "settings.dictation.cloud.logfare.disclosure",
       "settings.dictation.flow.phrasePlaceholder",
       "settings.history.filters.flow",
       "settings.history.flowLabel",
@@ -199,6 +201,7 @@
       "settings.assistant.webSearch.providers.brave",
       "settings.assistant.webSearch.providers.serpapi",
       "settings.dictation.cloud.endpoint.azurePlaceholder",
+      "settings.dictation.cloud.logfare.disclosure",
       "settings.dictation.cloud.model.title",
       "settings.dictation.flow.phrasePlaceholder",
       "settings.history.filters.flow",
@@ -321,6 +324,7 @@
       "settings.debug.logLevel.levels.trace",
       "settings.debug.title",
       "settings.dictation.cloud.endpoint.azurePlaceholder",
+      "settings.dictation.cloud.logfare.disclosure",
       "settings.dictation.flow.phrasePlaceholder",
       "settings.general.groups.overlay",
       "settings.general.groups.system",
@@ -431,6 +435,7 @@
       "settings.debug.logLevel.levels.error",
       "settings.dictation.cloud.endpoint.azurePlaceholder",
       "settings.dictation.cloud.endpoint.title",
+      "settings.dictation.cloud.logfare.disclosure",
       "settings.general.title",
       "settings.history.filters.flow",
       "settings.history.flowLabel",
@@ -578,6 +583,7 @@
       "settings.debug.logLevel.levels.info",
       "settings.debug.logLevel.levels.trace",
       "settings.dictation.cloud.endpoint.azurePlaceholder",
+      "settings.dictation.cloud.logfare.disclosure",
       "settings.dictation.flow.phrasePlaceholder",
       "settings.general.language.auto",
       "settings.history.filters.asks",
@@ -681,6 +687,7 @@
       "settings.assistant.webSearch.providers.brave",
       "settings.assistant.webSearch.providers.serpapi",
       "settings.dictation.cloud.endpoint.azurePlaceholder",
+      "settings.dictation.cloud.logfare.disclosure",
       "settings.history.filters.flow",
       "settings.history.flowLabel",
       "settings.postProcessing.api.apiKey.placeholder",
@@ -783,6 +790,7 @@
       "settings.debug.title",
       "settings.dictation.cloud.endpoint.azurePlaceholder",
       "settings.dictation.cloud.endpoint.title",
+      "settings.dictation.cloud.logfare.disclosure",
       "settings.dictation.cloud.provider.title",
       "settings.general.groups.overlay",
       "settings.history.filters.flow",
@@ -866,6 +874,7 @@
       "settings.assistant.tts.speedValue",
       "settings.assistant.webSearch.providers.brave",
       "settings.dictation.cloud.endpoint.azurePlaceholder",
+      "settings.dictation.cloud.logfare.disclosure",
       "settings.dictation.flow.phrasePlaceholder",
       "settings.history.filters.flow",
       "settings.history.flowLabel",
@@ -890,7 +899,9 @@
       "voiceEngines.names.supertonic",
       "voiceEngines.names.xai"
     ],
-    "englishFromOtherKey": ["onboarding.tour.ask.examples.translate.answer"]
+    "englishFromOtherKey": [
+      "onboarding.tour.ask.examples.translate.answer"
+    ]
   },
   "ko": {
     "sameAsEnglish": [
@@ -938,6 +949,7 @@
       "settings.assistant.webSearch.providers.brave",
       "settings.assistant.webSearch.providers.serpapi",
       "settings.dictation.cloud.endpoint.azurePlaceholder",
+      "settings.dictation.cloud.logfare.disclosure",
       "settings.dictation.flow.phrasePlaceholder",
       "settings.history.filters.flow",
       "settings.history.flowLabel",
@@ -1017,6 +1029,7 @@
       "settings.assistant.webSearch.providers.brave",
       "settings.assistant.webSearch.providers.serpapi",
       "settings.dictation.cloud.endpoint.azurePlaceholder",
+      "settings.dictation.cloud.logfare.disclosure",
       "settings.dictation.cloud.model.title",
       "settings.dictation.flow.phrasePlaceholder",
       "settings.general.groups.system",
@@ -1116,6 +1129,7 @@
       "settings.debug.logLevel.levels.info",
       "settings.dictation.cloud.endpoint.azurePlaceholder",
       "settings.dictation.cloud.endpoint.title",
+      "settings.dictation.cloud.logfare.disclosure",
       "settings.dictation.flow.phrasePlaceholder",
       "settings.history.filters.flow",
       "settings.history.flowLabel",
@@ -1196,6 +1210,7 @@
       "settings.assistant.webSearch.providers.brave",
       "settings.assistant.webSearch.providers.serpapi",
       "settings.dictation.cloud.endpoint.azurePlaceholder",
+      "settings.dictation.cloud.logfare.disclosure",
       "settings.dictation.flow.phrasePlaceholder",
       "settings.history.filters.flow",
       "settings.history.flowLabel",
@@ -1288,6 +1303,7 @@
       "settings.assistant.webSearch.providers.serpapi",
       "settings.debug.logLevel.levels.info",
       "settings.dictation.cloud.endpoint.azurePlaceholder",
+      "settings.dictation.cloud.logfare.disclosure",
       "settings.dictation.flow.phrasePlaceholder",
       "settings.general.groups.system",
       "settings.history.filters.flow",
@@ -1381,6 +1397,7 @@
       "settings.assistant.webSearch.providers.brave",
       "settings.assistant.webSearch.providers.serpapi",
       "settings.dictation.cloud.endpoint.azurePlaceholder",
+      "settings.dictation.cloud.logfare.disclosure",
       "settings.dictation.cloud.model.title",
       "settings.dictation.flow.phrasePlaceholder",
       "settings.history.filters.flow",
@@ -1413,7 +1430,9 @@
       "voiceEngines.names.supertonic",
       "voiceEngines.names.xai"
     ],
-    "englishFromOtherKey": ["settings.models.customModel.resultCount_other"]
+    "englishFromOtherKey": [
+      "settings.models.customModel.resultCount_other"
+    ]
   },
   "uk": {
     "sameAsEnglish": [
@@ -1458,6 +1477,7 @@
       "settings.assistant.webSearch.providers.brave",
       "settings.assistant.webSearch.providers.serpapi",
       "settings.dictation.cloud.endpoint.azurePlaceholder",
+      "settings.dictation.cloud.logfare.disclosure",
       "settings.dictation.flow.phrasePlaceholder",
       "settings.history.filters.flow",
       "settings.history.flowLabel",
@@ -1531,6 +1551,7 @@
       "settings.assistant.webSearch.providers.serpapi",
       "settings.dictation.cloud.endpoint.azurePlaceholder",
       "settings.dictation.cloud.endpoint.title",
+      "settings.dictation.cloud.logfare.disclosure",
       "settings.dictation.flow.phrasePlaceholder",
       "settings.history.filters.flow",
       "settings.history.flowLabel",
@@ -1560,7 +1581,9 @@
       "voiceEngines.names.supertonic",
       "voiceEngines.names.xai"
     ],
-    "englishFromOtherKey": ["onboarding.tour.ask.examples.translate.answer"]
+    "englishFromOtherKey": [
+      "onboarding.tour.ask.examples.translate.answer"
+    ]
   },
   "zh": {
     "sameAsEnglish": [
@@ -1606,6 +1629,7 @@
       "settings.assistant.tts.speedValue",
       "settings.assistant.webSearch.providers.brave",
       "settings.dictation.cloud.endpoint.azurePlaceholder",
+      "settings.dictation.cloud.logfare.disclosure",
       "settings.dictation.flow.phrasePlaceholder",
       "settings.history.filters.flow",
       "settings.history.flowLabel",
@@ -1630,7 +1654,9 @@
       "voiceEngines.names.supertonic",
       "voiceEngines.names.xai"
     ],
-    "englishFromOtherKey": ["onboarding.tour.ask.examples.translate.answer"]
+    "englishFromOtherKey": [
+      "onboarding.tour.ask.examples.translate.answer"
+    ]
   },
   "zh-TW": {
     "sameAsEnglish": [
@@ -1676,6 +1702,7 @@
       "settings.assistant.tts.speedValue",
       "settings.assistant.webSearch.providers.brave",
       "settings.dictation.cloud.endpoint.azurePlaceholder",
+      "settings.dictation.cloud.logfare.disclosure",
       "settings.dictation.flow.phrasePlaceholder",
       "settings.history.filters.flow",
       "settings.history.flowLabel",
@@ -1700,6 +1727,8 @@
       "voiceEngines.names.supertonic",
       "voiceEngines.names.xai"
     ],
-    "englishFromOtherKey": ["onboarding.tour.ask.examples.translate.answer"]
+    "englishFromOtherKey": [
+      "onboarding.tour.ask.examples.translate.answer"
+    ]
   }
 }

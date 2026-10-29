@@ -2573,6 +2573,20 @@ pub const CLOUD_STT_AZURE: &str = "azure";
 /// Provider id of Amazon Transcribe (streaming).
 pub const CLOUD_STT_AMAZON: &str = "amazon_transcribe";
 
+/// Provider id of Logfare, a free OpenAI-compatible aggregator.
+///
+/// Logfare serves `whisper-large-v3-turbo` on `POST /v1/audio/transcriptions`
+/// with the standard multipart shape, so it needs no protocol of its own.
+///
+/// **Privacy caveat, deliberately recorded here:** Logfare's own site states
+/// that "all API traffic is logged for research and data purposes", and the
+/// model entry carries `requires_training_optin: true`. Dictation audio is
+/// unusually sensitive — people speak passwords, medical details and private
+/// messages into these apps. The provider is offered because it is free and
+/// needs no card, but the UI must disclose the logging and local models must
+/// stay selectable. Do not make this the default provider.
+pub const CLOUD_STT_LOGFARE: &str = "logfare";
+
 pub fn default_cloud_stt_provider_id() -> String {
     CLOUD_STT_ELEVENLABS.to_string()
 }
@@ -2695,6 +2709,31 @@ pub fn default_cloud_stt_providers() -> Vec<CloudSttProvider> {
             supports_translation: false,
             key_optional: false,
             api_key_url: "https://openrouter.ai/settings/keys".to_string(),
+        },
+        // Logfare is a free, OpenAI-compatible aggregator (Solexsis Research
+        // LLC). It exposes exactly one transcription model today, so the list
+        // is short on purpose; "Load models" refreshes it from `/v1/models`,
+        // which is public and needs no key.
+        //
+        // Two fields are set conservatively because the docs do not state them:
+        // `honors_keyterms` (the OpenAI `prompt` field) and `supports_translation`
+        // (only `/audio/transcriptions` is documented, not `/audio/translations`).
+        // Claiming either without evidence would surface a control that fails at
+        // request time, so both stay false until verified against the live API.
+        CloudSttProvider {
+            id: CLOUD_STT_LOGFARE.to_string(),
+            label: "Logfare".to_string(),
+            base_url: "https://logfare.ai/v1".to_string(),
+            allow_base_url_edit: false,
+            kind: CloudSttKind::OpenAiCompatible,
+            default_model: "whisper-large-v3-turbo".to_string(),
+            models: vec!["whisper-large-v3-turbo".to_string()],
+            models_endpoint: Some("/models".to_string()),
+            honors_keyterms: false,
+            supports_streaming: false,
+            supports_translation: false,
+            key_optional: false,
+            api_key_url: "https://logfare.ai/register".to_string(),
         },
         CloudSttProvider {
             id: "deepgram".to_string(),

@@ -299,16 +299,23 @@ winreg = "0.55"
 # lockfile resolves so both share one copy.
 arboard = { version = "=3.6.1", default-features = false }
 
-# transcribe.cpp Windows x86_64 backends: dynamic (loadable) backend DLLs +
-# Vulkan GPU acceleration. Build-time prereqs: cmake, Vulkan SDK, and
-# SPIRV-Headers (the Vulkan SDK bundles SPIRV-HeadersConfig.cmake; point
-# CMAKE_PREFIX_PATH at the SDK). Windows aarch64 uses the static CPU-only
-# table just below.
+# transcribe.cpp Windows x86_64 backends.
+#
+# FORK CHANGE (cloud-only build): upstream enables `dynamic-backends` + `vulkan`
+# here, which requires the Vulkan SDK and SPIRV-Headers at build time and makes
+# ggml compile every CPU variant plus the Vulkan shader generator. That is a
+# multi-GB, multi-minute build for GPU acceleration of *local* inference.
+#
+# This fork runs transcription through a cloud provider (Logfare), so the local
+# engine is never exercised. Dropping both features falls back to the single
+# portable ggml CPU backend — the same static, CPU-only posture upstream already
+# uses for Windows-on-ARM just below. Result: no Vulkan SDK needed, far smaller
+# build, and local models still work (slower, CPU-only) if ever selected.
+#
+# To restore upstream behaviour, put the two features back and install the
+# Vulkan SDK, pointing CMAKE_PREFIX_PATH at it.
 [target.'cfg(all(windows, target_arch = "x86_64"))'.dependencies]
-transcribe-cpp = { version = "=0.4.0", default-features = false, features = [
-  "dynamic-backends",
-  "vulkan",
-] }
+transcribe-cpp = { version = "=0.4.0", default-features = false }
 
 # transcribe.cpp Windows aarch64 (Windows-on-ARM): STATIC, CPU-only (no
 # features → the single portable ggml CPU backend is compiled into

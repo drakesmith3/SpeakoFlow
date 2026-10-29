@@ -1390,13 +1390,33 @@ impl CloudRequest {
         }
         let response = request.send().await.map_err(|e| self.network_error(e))?;
 
+        // The OpenAI schema puts the transcript at the root: `{"text": "..."}`.
+        // Some aggregators wrap it instead. Logfare returns
+        // `{"result": {"text": "..."}, "success": true, "errors": []}`, so a
+        // root-only struct would deserialize to an empty string and the app
+        // would silently type nothing — no error, no transcript, no clue why.
+        // Accept both shapes, preferring the root field.
         #[derive(Deserialize)]
         struct OpenAiResponse {
             #[serde(default)]
             text: String,
+            #[serde(default)]
+            result: Option<OpenAiWrapped>,
         }
+
+        #[derive(Deserialize)]
+        struct OpenAiWrapped {
+            #[serde(default)]
+            text: String,
+        }
+
         let parsed: OpenAiResponse = self.parse_json(response).await?;
-        Ok(parsed.text)
+        let text = if parsed.text.is_empty() {
+            parsed.result.map(|r| r.text).unwrap_or_default()
+        } else {
+            parsed.text
+        };
+        Ok(text)
     }
 
     /// `POST /v1/listen` — raw audio body, `Authorization: Token`, options as
@@ -1703,6 +1723,50 @@ fn looks_like_transcription_model(id: &str) -> bool {
 mod tests {
     use super::*;
     use crate::settings::{get_default_settings, SttEngineMode};
+
+    /// The OpenAI transcription schema puts `text` at the root. Logfare wraps it
+    /// in `result`. A root-only struct deserializes the wrapped form to an empty
+    /// string, which the app treats as a successful empty transcript: nothing is
+    /// typed and no error is shown. Both shapes must yield the transcript.
+    #[test]
+    fn openai_response_accepts_root_and_wrapped_text() {
+        #[derive(Deserialize)]
+        struct OpenAiResponse {
+            #[serde(default)]
+            text: String,
+            #[serde(default)]
+            result: Option<OpenAiWrapped>,
+        }
+        #[derive(Deserialize)]
+        struct OpenAiWrapped {
+            #[serde(default)]
+            text: String,
+        }
+
+        let unwrap = |json: &str| {
+            let parsed: OpenAiResponse = serde_json::from_str(json).expect("parses");
+            if parsed.text.is_empty() {
+                parsed.result.map(|r| r.text).unwrap_or_default()
+            } else {
+                parsed.text
+            }
+        };
+
+        // Standard OpenAI / Groq / Mistral shape.
+        assert_eq!(unwrap(r#"{"text":"hello there"}"#), "hello there");
+        // Logfare's wrapped shape, trimmed to the fields that matter.
+        assert_eq!(
+            unwrap(r#"{"result":{"text":"hello there"},"success":true,"errors":[]}"#),
+            "hello there"
+        );
+        // A root `text` wins if a server ever sends both.
+        assert_eq!(
+            unwrap(r#"{"text":"root","result":{"text":"wrapped"}}"#),
+            "root"
+        );
+        // Neither present: empty, not a panic.
+        assert_eq!(unwrap(r#"{"success":true}"#), "");
+    }
 
     #[test]
     fn only_network_and_retryable_status_failures_are_retried() {

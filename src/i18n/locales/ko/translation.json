@@ -1289,6 +1289,9 @@
           "description": "1초 분량의 오디오를 보내 키, 엔드포인트, 모델을 확인합니다.",
           "action": "테스트 실행",
           "running": "테스트 중…"
+        },
+        "logfare": {
+          "disclosure": "Logfare is free and needs no card, but its terms say all API traffic is logged for research and data purposes, and the model is marked as requiring training opt-in. Anything you dictate here — including passwords, medical details or private messages — may be retained and used for training. Choose a local model, or a provider with a paid no-training tier, if that is not acceptable."
         }
       },
       "aiCleanup": {

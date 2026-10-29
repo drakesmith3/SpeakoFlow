@@ -1289,6 +1289,9 @@
           "description": "Gửi một giây âm thanh để kiểm tra khóa, endpoint và mô hình.",
           "action": "Chạy kiểm tra",
           "running": "Đang kiểm tra…"
+        },
+        "logfare": {
+          "disclosure": "Logfare is free and needs no card, but its terms say all API traffic is logged for research and data purposes, and the model is marked as requiring training opt-in. Anything you dictate here — including passwords, medical details or private messages — may be retained and used for training. Choose a local model, or a provider with a paid no-training tier, if that is not acceptable."
         }
       },
       "aiCleanup": {

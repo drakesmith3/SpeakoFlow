@@ -498,6 +498,23 @@ export const CloudTranscriptionGroup: React.FC<{
         </SettingContainer>
       )}
 
+      {/*
+        Logfare is free and needs no card, which makes it the easiest provider to
+        reach for — and the one whose terms most need saying out loud. Its site
+        states that all API traffic is logged for research and data purposes,
+        and the model entry carries `requires_training_optin: true`. Dictation
+        audio is unusually sensitive: people speak passwords, medical details and
+        private messages into these apps. A user choosing this provider should
+        know that before they speak, not after reading a privacy policy.
+      */}
+      {provider?.id === "logfare" && (
+        <Alert variant="warning">
+          <span className="text-xs leading-relaxed">
+            {t("settings.dictation.cloud.logfare.disclosure")}
+          </span>
+        </Alert>
+      )}
+
       {isAmazon && (
         <SettingContainer
           title={t("settings.dictation.cloud.amazon.region.title")}

@@ -90,9 +90,31 @@ fn main() {
     // bundles it.
     stage_vc_runtime_dlls();
 
+    // FORK CHANGE (cloud-only build): a static transcribe-cpp build stages no
+    // DLLs, so `stage_transcribe_runtime_libs` returns before creating
+    // `transcribe-libs/`. `tauri.conf.json` still lists that directory as a
+    // resource, and Tauri fails the build outright when a declared resource
+    // path is missing ("resource path `transcribe-libs` doesn't exist").
+    // Keep the directory present but empty so the bundle step resolves.
+    ensure_transcribe_libs_dir();
+
     generate_tray_translations();
 
     tauri_build::build()
+}
+
+/// Create `transcribe-libs/` if nothing staged it.
+///
+/// Upstream never needs this: every platform it ships either builds
+/// transcribe-cpp shared (Windows x86_64, Linux) or stages the VC++ runtime
+/// into the same directory. Our static, cloud-only Windows build does neither,
+/// so the resource path would otherwise be absent.
+fn ensure_transcribe_libs_dir() {
+    let dest = std::path::PathBuf::from(std::env::var("CARGO_MANIFEST_DIR").unwrap())
+        .join("transcribe-libs");
+    if !dest.exists() {
+        std::fs::create_dir_all(&dest).expect("create transcribe-libs staging dir");
+    }
 }
 
 /// Stage transcribe-cpp's shared runtime libraries into `transcribe-libs/` so
